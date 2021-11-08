@@ -36,13 +36,13 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+
       body: SafeArea(
         child: Container(
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
-            // even space distribution
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -58,7 +58,8 @@ class HomePage extends StatelessWidget {
                         ScaleAnimatedText(
                           'Welcome',
                           scalingFactor: 0.3,
-                          textStyle: const TextStyle(
+                          textStyle: 
+                          const TextStyle(
                             fontSize: 40,
                             fontFamily: "Roboto",
                             fontStyle: FontStyle.italic,
@@ -78,6 +79,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+
               Column(
                 children: <Widget>[
                   StreamBuilder(
@@ -85,17 +87,16 @@ class HomePage extends StatelessWidget {
                       builder: (context, AsyncSnapshot<String> snapshot) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 16),
-                          child: Column(
+                          horizontal: 8, vertical: 16),
+                          child: 
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
                                 "Username: ",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey),
+                                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.blueGrey),
                               ),
+
                               TextField(
                                 onChanged: (String text) =>
                                     _textBloc.updateText(text),
@@ -104,7 +105,7 @@ class HomePage extends StatelessWidget {
                           ),
                         );
                       }),
-                  // creating the signup button
+                  
                   const SizedBox(height: 20),
                   // ignore: avoid_unnecessary_containers
                   Container(
@@ -122,14 +123,15 @@ class HomePage extends StatelessWidget {
                         color: Colors.blueGrey.shade500,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        child: const Text(
-                          "Go To Homepage",
+                        child: 
+                        const Text("Go To Homepage",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
                         ),
-                      ))
+                      )
+                    )
                 ],
               )
             ],

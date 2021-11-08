@@ -64,70 +64,76 @@ class _PostPageState extends State<PostPage> {
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.blueGrey,
-          leading: IconButton(
-              iconSize: 40,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
+          leading: 
+          IconButton(
+                icon: const Icon(
                 Icons.arrow_back_ios,
-                size: 20,
                 color: Colors.black,
-              )),
+                ),
+                iconSize: 30,
+                onPressed: () {
+                Navigator.pop(context);
+              },),
+
           actions: <Widget>[
             Row(
               children: [
                 IconButton(
-                  iconSize: 30,
-                  icon: const Icon(
+                    icon: const Icon(
                     Icons.sort_rounded,
                     color: Colors.black,
-                  ),
-                  onPressed: () {},
+                    ),
+                    iconSize: 30,
+                    onPressed: () {
+                    setState(() {
+                      ListPost = ListPost.reversed.toList();
+                    });
+                  },
                 ),
+
                 IconButton(
+                    icon: const Icon(Icons.favorite),
                     color: Colors.pink,
                     iconSize: 30,
                     onPressed: () {
                       pushToFavoritePostRoute(context);
                     },
-                    icon: const Icon(Icons.favorite)),
+                    ),
+
                 IconButton(
-                  onPressed: () {
+                    icon: const Icon(Icons.add_box_outlined),
+                    iconSize: 30,
+                    onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 CreatePage(channel: widget.channel)));
-                  },
-                  icon: const Icon(Icons.add_box_outlined),
-                  iconSize: 30,
-                )
+                  },)
               ],
             )
           ],
         ),
       ),
+
       body: ListView.builder(
         // ignore: unnecessary_null_comparison
         itemCount: ListPost.length,
         itemBuilder: (context, index) {
-
           bool isSaved = savedPost.contains(ListPost[index]);
           return GestureDetector(
             onTap: () {
               Navigator.push(
-                context,
+              context,
                 MaterialPageRoute(
-                  builder: (context) =>
+                builder: (context) =>
                       DisplayPostRoute(DetailPost: ListPost[index]),
-                ),
-              );
-            },
+                ), );
+                },
 
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -144,61 +150,62 @@ class _PostPageState extends State<PostPage> {
                           SizedBox(
                           width: 120,
                           height: 120,
-                          child: Image.network(
+                          child: 
+                          Image.network(
                                   ListPost[index]["image"],
                                   errorBuilder: (context, error, stackTrace) {
                                   return Container();
                                   },
                                   fit: BoxFit.fill,
-                                  ),
+                                  ),),
                         ),
-                        ),
-   
-                                        
+           
                       Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 15),
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                ListPost[index]["title"],
-                                style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
-                              ),
-                              // ignore: avoid_unnecessary_containers
-                              Text(
-                                    ListPost[index]["author"],
-                                    style: const TextStyle(fontSize: 15),
-                                  ),
-                              Text(
-                                ListPost[index]["description"],
-                              style: const TextStyle(fontSize: 15),)
+                              child:Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+
+                                  Text(
+                                  ListPost[index]["title"],
+                                  style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+
+                                  // ignore: avoid_unnecessary_containers
+                                Text(
+                                  ListPost[index]["author"],
+                                  style: const TextStyle(fontSize: 15),),
+                                Text(
+                                  ListPost[index]["description"],
+                                style: const TextStyle(fontSize: 15),)
+                            
                             ],
                           ),
-                          ),
                         ),
+                      ),
+
                         // ignore: avoid_unnecessary_containers
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
                           child: Row(
-                            //mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               IconButton(
-                                  iconSize: 20,
-                                  onPressed: () {
+                                icon: const Icon(Icons.delete),
+                                iconSize: 20,
+                                onPressed: () {
                                     _deletePost();
                                     setState(() {
                                       ListPost.indexOf(ListPost[index]);
                                       ListPost.removeAt(index);
                                     });
                                   },
-                                  icon: const Icon(Icons.delete)),
+                                ),
+
                               IconButton(
-                                  //isSaved ? Icons.favorite : Icons.favorite_border,
-                                  color: isSaved ? Colors.red : Colors.blueGrey,
-                                  //color: Colors.pink,
-                                  iconSize: 20,
-                                  onPressed: () {
+                                icon: const Icon(Icons.favorite),
+                                color: isSaved ? Colors.red : Colors.blueGrey,
+                                iconSize: 20,
+                                onPressed: () {
                                     setState(() {
                                       if (isSaved) {
                                         savedPost.remove(ListPost[index]);
@@ -207,7 +214,7 @@ class _PostPageState extends State<PostPage> {
                                       }
                                     });
                                   },
-                                  icon: const Icon(Icons.favorite)),
+                                ),
                             ],
                           ),
                         )
@@ -231,7 +238,4 @@ class _PostPageState extends State<PostPage> {
     );
   }
 
-
 }
-
-
